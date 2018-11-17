@@ -27,7 +27,7 @@ from kivy.uix.textinput import TextInput
 from os import listdir
 from pprint import pprint
 
-__author__ = "Michael Huyler is an EECS god innit"
+__author__ = "Michael Huyler"
 __copyright__ = "Copyright 2018"
 __credits__ = ["Michael Huyler"]
 __license__ = "None"
