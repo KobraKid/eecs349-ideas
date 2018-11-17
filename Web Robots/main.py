@@ -1,10 +1,11 @@
+"""Provides a means to preview JSON formatted files from the Web Robots'
+Kickstarter data set: https://webrobots.io/kickstarter-datasets/
+"""
 import json
 import kivy
 import os
-kivy.require('1.10.1')
 from tkinter import Tk
 from tkinter import filedialog
-from tkinter import *
 from kivy.app import App
 from kivy.clock import Clock
 from kivy.factory import Factory
@@ -26,6 +27,16 @@ from kivy.uix.textinput import TextInput
 from os import listdir
 from pprint import pprint
 
+__author__ = "Michael Huyler"
+__copyright__ = "Copyright 2018"
+__credits__ = ["Michael Huyler"]
+__license__ = "None"
+__version__ = "2.0"
+__maintainer__ = "Michael Huyler"
+__email__ = "michaelhuyler2020@u.northwestern.edu"
+__status__ = "Development"
+
+kivy.require('1.10.1')
 kv_path = './kv/'
 for kv in listdir(kv_path):
     Builder.load_file(kv_path+kv)
@@ -50,9 +61,9 @@ keys = {
     '/data/profile/feature_image_attributes/image_urls/default': 0, '/data/profile/feature_image_attributes/image_urls/baseball_card': 0, '/data/spotlight': 0,
     '/data/urls/web/project': 0, '/data/urls/web/rewards': 0, '/data/source_url': 0
 }
-filename = "No file chosen"
-lines = 1
-selected_cols = []
+gFilename = "No file chosen"
+gLines = 1
+gSelectedCols = []
 
 
 def get_cols(dictionary, parent, search):
@@ -118,14 +129,14 @@ class SelectableLabel(RecycleDataViewBehavior, Label):
 
     def apply_selection(self, rv, index, is_selected):
         ''' Respond to the selection of items in the view. '''
-        global selected_cols
+        global gSelectedCols
         self.selected = is_selected
         txt = rv.data[index].get('text')
         if is_selected:
-            if txt not in selected_cols:
-                selected_cols.append(txt)
+            if txt not in gSelectedCols:
+                gSelectedCols.append(txt)
         else:
-            selected_cols[:] = [x for x in selected_cols if x != txt]
+            gSelectedCols[:] = [x for x in gSelectedCols if x != txt]
 
     def reset(self):
         self.selected = False
@@ -158,21 +169,21 @@ class DataViewer(GridLayout):
     display = ObjectProperty()
 
     def update_linecount(self):
-        global lines
-        lines = self.ids.linecounter.text
+        global gLines
+        gLines = self.ids.linecounter.text
 
     def parse(self):
-        global lines
-        global filename
-        if filename == "No file chosen":
+        global gLines
+        global gFilename
+        if gFilename == "No file chosen":
             return
 
         # parse (lines) lines from (filename)
         # then get columns that match selected set
-        data = get_data_by_line(filename, lines)
+        data = get_data_by_line(gFilename, gLines)
         result = ""
         sep = "=======================================================\n"
-        if len(selected_cols) == 0:
+        if len(gSelectedCols) == 0:
             result = "Dumping data (WARNING: LARGE DATA SET)\n" + sep
             for datum in data:
                 r = get_cols(datum, '', '')
@@ -181,7 +192,7 @@ class DataViewer(GridLayout):
                 result = result + r + '\n' + sep
         else:
             for datum in data:
-                for col in selected_cols:
+                for col in gSelectedCols:
                     r = get_cols(datum, '', col)
                     if r is None:
                         r = "<Not found>"
@@ -196,28 +207,28 @@ class DataViewer(GridLayout):
         self._popup.open()
 
     def load(self, path, file):
-        global filename
-        filename = os.path.join(path, file[0])
+        global gFilename
+        gFilename = os.path.join(path, file[0])
         self.dismiss_popup()
 
     def dismiss_popup(self):
-        global filename
-        newtext = filename
-        if len(filename) > 29:
-            newtext = filename[-29:]
+        global gFilename
+        newtext = gFilename
+        if len(gFilename) > 29:
+            newtext = gFilename[-29:]
         self.ids.filename.text = newtext
         self._popup.dismiss()
 
     def reset(self):
-        global lines
-        global selected_cols
-        global filename
-        filename = "No file chosen"
-        lines = 1
-        selected_cols = []
+        global gLines
+        global gSelectedCols
+        global gFilename
+        gFilename = "No file chosen"
+        gLines = 1
+        gSelectedCols = []
         self.ids.linecounter.text = "1"
         self.display.text = ''
-        self.ids.filename.text = filename
+        self.ids.filename.text = gFilename
         self.ids.rv.reset()
 
 
