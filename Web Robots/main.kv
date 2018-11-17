@@ -1,0 +1,58 @@
+<DataViewer>:
+    display: display
+    rows: 1
+    cols: 2
+    GridLayout:
+        rows: 4
+        BoxLayout:
+            cols: 2
+            Label:
+                text: 'File:'
+            FileChooseButton:
+                id: filename
+                on_release: root.show_load()
+        BoxLayout:
+            cols: 2
+            Label:
+                text: 'Column(s) to parse:'
+            RV:
+                id: rv
+        BoxLayout:
+            cols: 2
+            Label:
+                text: 'Line(s) to parse:'
+            LineCountTextInput:
+                id: linecounter
+                on_text: root.update_linecount()
+        BoxLayout:
+            cols: 2
+            Button:
+                text: "Reset"
+                font_size: 50
+                on_release: root.reset()
+            BeginParseButton:
+                on_release: root.parse()
+    TextInput:
+        id: display
+        font_size: dp(12)
+        text: ''
+
+<LoadDialog>:
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: "vertical"
+        FileChooserListView:
+            id: filechooser
+            path: "C:\\Users\\Michael\\OneDrive - Northwestern University\\School\\Kickstarter Data\\Web Robots"
+        BoxLayout:
+            size_hint_y: None
+            height: 30
+            Button:
+                id: cancel
+                text: "Cancel"
+                on_release: root.cancel()
+            Button:
+                id: load
+                text: "Load"
+                on_release: root.load(filechooser.path, filechooser.selection)
