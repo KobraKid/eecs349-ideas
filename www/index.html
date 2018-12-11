@@ -1,71 +1,222 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="cleartype" content="on">
-  
-  <!-- Prefetch DNS for external assets (CDN-hosted libraries + plugins, font-embedding, social widgets, etc). -->
-  <link rel="dns-prefetch" href="//www.google-analytics.com">
-  <link rel="dns-prefetch" href="//ajax.googleapis.com">
-  
-  <title>Kickstarter Idea Evaluator</title>
-  <link rel="stylesheet" href="/css.css">
-  <meta name="description" content="">
-  <link rel="canonical" href="">
-  <link rel="author" href=" -- URL of website, social media profile, etc. -- ">
-  <link type="text/plain" rel="author" href="humans.txt">
-</head>
-<body>
-	
-  <!-- ARIA Role Attributes -->
-  <header role="banner">
-      <p>Our website will go here.</p>
-  </header>
-  
-  <nav role="navigation">
-  </nav>
-
-	<section role="main">
-  </section>
-  
-  <aside role="complementary">
-  </aside>
-  
-  <footer role="contentinfo">
-  </footer>
-  
-  <!--
-  	“Putting scripts at the bottom of the page is an outdated technique. Use async and defer instead" (outdated but safe):
-  	https://twitter.com/smashingmag/status/593100193010032640
-  	
-    Use async attribute: The script is downloaded asynchronously while the rest of the page continues to get parsed. The script is guaranteed to be executed as soon as the download is complete:
-    http://csswizardry.com/2013/01/front-end-performance-for-web-designers-and-front-end-developers/
-    
-    Use defer attribute if IE9 and below are not a concern:
-    http://www.growingwiththeweb.com/2014/02/async-vs-defer-attributes.html
-    
-    General Guidelines:
-    - Typically you want to use async where possible, then defer, then no attribute.
-    - If the script is modular and does not rely on any scripts then use async.
-		- If the script relies upon or is relied upon by another script then use defer.
-    
-  -->
-  <script async src="/js/jquery.min.js"></script>
-  <script defer src="/js/your-js.js"></script>
-  
-  <!--
-  	Google Analytics: change UA-XXXXX-X to be the site's ID.
-  -->
-  <script>
-	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-	  ga('create', 'UA-XXXXX-X', 'auto');
-	  ga('send', 'pageview');
-	</script>
-  
-</body>
+	<head>
+		<title>Kickstarter Project Evaluator</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="description" content="HTML5 website template">
+		<meta name="keywords" content="global, template, html, sass, jquery">
+		<meta name="author" content="Ramish Zaidi">
+		<link rel="stylesheet" href="assets/css/main.css">
+	</head>
+	<body>
+		<!-- notification for small viewports and landscape oriented smartphones -->
+		<div class="device-notification">
+			<a class="device-notification--logo" href="#0">
+				<p>EECS 349</p>
+			</a>
+			<p class="device-notification--message">We must request you orient your device to portrait or find a larger screen. You won't be disappointed.</p>
+		</div>
+		<div class="perspective effect-rotate-left">
+			<div class="container">
+				<div class="outer-nav--return"></div>
+				<div id="viewport" class="l-viewport">
+					<div class="l-wrapper">
+						<header class="header">
+							<a class="header--logo" href="#0">
+								<p>Northwestern University
+									<br>
+									Ramish Zaidi, Michael Huyler, Mathias Newman
+								</p>
+							</a>
+							<div class="header--nav-toggle">
+								<span></span>
+							</div>
+						</header>
+						<nav class="l-side-nav">
+							<ul class="side-nav">
+								<li class="is-active"><span>Home</span></li>
+								<li><span>Results</span></li>
+								<li><span>Approach</span></li>
+								<li><span>Future Research</span></li>
+								<li><span>Contributors</span></li>
+							</ul>
+						</nav>
+						<ul class="l-main-content main-content">
+							<li class="l-section section section--is-active">
+								<div class="intro">
+									<div class="intro--banner">
+										<h1>Kickstarter<br>Project<br>Evaluator</h1>
+										<button class="cta">
+											Predict success
+											<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 118" style="enable-background:new 0 0 150 118;" xml:space="preserve">
+												<g transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)">
+													<path d="M870,1167c-34-17-55-57-46-90c3-15,81-100,194-211l187-185l-565-1c-431,0-571-3-590-13c-55-28-64-94-18-137c21-20,33-20,597-20h575l-192-193C800,103,794,94,849,39c20-20,39-29,61-29c28,0,63,30,298,262c147,144,272,271,279,282c30,51,23,60-219,304C947,1180,926,1196,870,1167z"/>
+												</g>
+											</svg>
+											<span class="btn-background"></span>
+										</button>
+										<img src="assets/img/arrow.png" alt="Welcome" width="600px" height="350px">
+									</div>
+									<div class="intro--options">
+										<a href="#0">
+											<h3>Mission</h3>
+											<p>Task: Predict the success of a Kickstarter project
+												<br>
+												<br>
+												Research Question: Can we predict the success of any given Kickstarter project just from the initial conditions?
+											</p>
+										</a>
+										<a href="#0">
+											<h3>Why is this interesting?</h3>
+											<p>Kickstarter is dominated by user-generated content, and funding is driven directly by the end-users of the products. In addition, Kickstarter relies on its users for its own company's health, both on the buy and sell side. Investigating the interaction between the content of a project and the users on the platform has valeu for both Kickstarter and the users.</p>
+										</a>
+									</div>
+								</div>
+							</li>
+							<li class="l-section section">
+								<div class="work">
+									<h2>Our Findings</h2>
+									<div class="work--lockup">
+										<ul class="slider">
+											<li class="slider--item slider--item-left">
+												<a href="#0">
+													<div class="slider--item-image">
+														<img src="https://via.placeholder.com/357x358" alt="Victory">
+													</div>
+													<p class="slider--item-title">Supporting Detail #1</p>
+													<p class="slider--item-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do.</p>
+												</a>
+											</li>
+											<li class="slider--item slider--item-center">
+												<a href="#0">
+													<div class="slider--item-image">
+														<img src="https://via.placeholder.com/300x300" alt="Graph 1">
+													</div>
+													<p class="slider--item-title">Main Insight</p>
+													<p class="slider--item-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do.</p>
+												</a>
+											</li>
+											<li class="slider--item slider--item-right">
+												<a href="#0">
+													<div class="slider--item-image">
+														<img src="https://via.placeholder.com/357x358" alt="Graph 2">
+													</div>
+													<p class="slider--item-title">Supporting Detail #2</p>
+													<p class="slider--item-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do.</p>
+												</a>
+											</li>
+										</ul>
+										<div class="slider--prev">
+											<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+												viewBox="0 0 150 118" style="enable-background:new 0 0 150 118;" xml:space="preserve">
+												<g transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)">
+													<path d="M561,1169C525,1155,10,640,3,612c-3-13,1-36,8-52c8-15,134-145,281-289C527,41,562,10,590,10c22,0,41,9,61,29
+														c55,55,49,64-163,278L296,510h575c564,0,576,0,597,20c46,43,37,109-18,137c-19,10-159,13-590,13l-565,1l182,180
+														c101,99,187,188,193,199c16,30,12,57-12,84C631,1174,595,1183,561,1169z"/>
+												</g>
+											</svg>
+										</div>
+										<div class="slider--next">
+											<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 118" style="enable-background:new 0 0 150 118;" xml:space="preserve">
+												<g transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)">
+													<path d="M870,1167c-34-17-55-57-46-90c3-15,81-100,194-211l187-185l-565-1c-431,0-571-3-590-13c-55-28-64-94-18-137c21-20,33-20,597-20h575l-192-193C800,103,794,94,849,39c20-20,39-29,61-29c28,0,63,30,298,262c147,144,272,271,279,282c30,51,23,60-219,304C947,1180,926,1196,870,1167z"/>
+												</g>
+											</svg>
+										</div>
+									</div>
+								</div>
+							</li>
+							<li class="l-section section">
+								<div class="about">
+									<div class="about--banner">
+										<h2>How did we achieve those results?</h2>
+									</div>
+									<div class="approach">
+										<a>
+											<h3>Plans for remainder of the quarter (+questions/concerns)</h3>
+											<p>
+												Currently we are in the data pre-processing stage. Our team split up into two, with one unit working on cleaning up a Kaggle dataset and the other unit working on preparing a larger dataset into a workable format. The larger dataset contains more data and more useful attributes, but it’s structured in a confusing nest of json files. We used Pandas in Python to convert the json into a dataframe, which would allow us to apply the ML techniques efficiently. However, we will have to write our own code to uncover nested information in the dataset because the dataframe seems to be only picking up the top layer of data. We will continue to munge this dataset, but the other unit on our team is using the cleaner, simpler Kaggle dataset as a smaller test case and backup.
+												<br>
+												<br>
+												As expected, the majority of the time spent has been, and will be, in representing data well so that we can run algorithms on it. We expect to spend a week and half more on data pre-processing. Afterwards, we plan to use the remaining time to test our predictor with as many techniques as possible. Our final deliverable will be an analysis, using cross-validation on our data, that shows the results of our predictor using the best ML technique we tested.
+												<br>
+												Given the significant number of categorical attributes, we will need to implement one-hot encoding to represent those attributes numerically (for compatibility with most sklearn packages). A pitfall of this approach is that it will greatly increase the number of attributes the model processes (since there will now be a new dimension for each value that all of the categorical attributes take). To address this ‘curse of dimensionality’ issue, we will analyze the frequency distributions for each categorical attribute, and one-hot encode the most common ones, while bunching the less common values into a combined category, ‘Other.’ The 80/20 rule will likely dictate our method of choosing ‘common’ categorical attribute values. 
+												<br>
+												An interesting obstacle, though perhaps not a challenging one to work around, is that some attributes only accrue values over time after a project is launched. The predictor we are building takes in a brand new project (at time t0=0 seconds) as its input, therefore it will be missing values for funding raised, total number of backers, etc. Our model will be trained on these later-occurring attributes, but it can only predict based on the attributes that would exist at t0.
+											</p>
+										</a>
+									</div>
+								</div>
+							</li>
+							<li class="l-section section">
+								<div class="intro">
+									<div class="about--banner">
+										<h2>What's next?</h2>
+									</div>
+									<div class="intro--options">
+										<a href="#0">
+											<h3>Area #1</h3>
+											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do.</p>
+										</a>
+										<a href="#0">
+											<h3>Area #2</h3>
+											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do.</p>
+										</a>
+										<a href="#0">
+											<h3>Area #2</h3>
+											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do.</p>
+										</a>
+									</div>
+								</div>
+							</li>
+							<li class="l-section section">
+								<div class="about">
+									<div class="contributors--banner">
+										<h2>Contact Us</h2>
+									</div>
+									<div class="c--options">
+										<a>
+											<h1>Ramish Zaidi</h1>
+											<h4 href="mailto:ramishzaidi2019@u.northwestern.edu">ramishzaidi2019@u.northwestern.edu</h4>
+                                            <h4 href="https://www.linkedin.com/in/ramishazaidi/">LinkedIn</h4>
+										</a>
+										<a>
+											<h1>Michael Huyler</h1>
+											<h4 href="mailto:MichaelHuyler2020@u.northwestern.edu">michaelhuyler2020@u.northwestern.edu</h4>
+                                            <h4 href="https://www.linkedin.com/in/michael-huyler/">LinkedIn</h4>
+										</a>
+										<a>
+											<h1>Mathias Newman</h1>
+											<h4 href="mailto:mathiasnewman2019@u.northwestern.edu">mathiasnewman2019@u.northwestern.edu</h4>
+                                            <h4 href="https://www.linkedin.com/in/mathiasdnewman/">LinkedIn</h4>
+								        </a>
+									</div>
+									<div class="contributors">
+										<h2>Special Thanks</h2>
+										<a href="https://www.cs.northwestern.edu/~ddowney/">Doug Downey</a>, for being our beloved EECS 349 professor
+										<br>
+										<a href="https://github.com/BuckyMaler">Bucky Maler</a>, for the "Global" HTML template
+										<br>
+										Zachary Paitsel, our fallen comrade
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<ul class="outer-nav">
+				<li class="is-active">Home</li>
+				<li>Results</li>
+				<li>Approach</li>
+				<li>Future Research</li>
+				<li>Contributors</li>
+			</ul>
+		</div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+		<script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-2.2.4.min.js"><\/script>')</script>
+		<script src="assets/js/functions-min.js"></script>
+	</body>
 </html>
