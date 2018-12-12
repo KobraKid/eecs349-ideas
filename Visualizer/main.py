@@ -87,11 +87,13 @@ def get_data_by_line(filename, lines):
         for line in f:
             data.append(json.loads(line))
             if lines == 0 or int(lines) == 0:
+                count = count + 1
                 continue
             if count == int(lines):
                 break
             else:
                 count = count + 1
+    print("Parsed " + str(count) + " lines.")
     return data
 
 

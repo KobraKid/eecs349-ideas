@@ -1,5 +1,14 @@
+# Mac Cache
+.DS_Store
+
+# Windows Cache
+Thumbs.db
+
 # JSON
 *.json
+
+# CSV
+*.csv
 
 # Python
 
