@@ -1,17 +1,24 @@
 import os
+import gzip
+import shutil
 import json
+import datetime
+from datetime import date
 from textblob import TextBlob
 
 
-gFilename = "C:\\Users\\Michael\\OneDrive - Northwestern University\\School\\Kickstarter Data\\Web Robots\\Kickstarter_2018-10-18T03_20_48_880Z.json"
+gFilename = ""
+gFilepathZipped = "F:\\zipped"
+gFilepathUnzipped = "F:\\unzipped"
+gFilepathCleaned = "F:\\cleaned"
 gLines = 50000
 gSelectedCols = [
     # Money
-    '/data/goal', '/data/currency', '/data/country',
+    '/data/goal', '/data/currency', '/data/country', '/data/usd_pledged',
     # Categories
     '/data/category/slug',
     # Dates
-    # '/data/deadline', '/data/created_at', '/data/launched_at',
+    '/data/deadline', '/data/created_at', '/data/launched_at',
     # Text sentiment
     '/data/name', '/data/blurb',
     # Classification
@@ -148,21 +155,45 @@ def get_cols(dictionary, parent, search, flag):
             elif flag == 2:
                 pass
             elif flag == 3:
-                pass
+                # get_season(datetime.datetime.fromtimestamp(value))
+                if value is not str:
+                    retval = retval + str(value)
+                else:
+                    retval = retval + value
     return retval
 
 
+Y = 2000  # dummy leap year to allow input X-02-29 (leap day)
+seasons = [('winter', (date(Y,  1,  1),  date(Y,  3, 20))),
+           ('spring', (date(Y,  3, 21),  date(Y,  6, 20))),
+           ('summer', (date(Y,  6, 21),  date(Y,  9, 22))),
+           ('autumn', (date(Y,  9, 23),  date(Y, 12, 20))),
+           ('winter', (date(Y, 12, 21),  date(Y, 12, 31)))]
+
+
+def get_season(now):
+    if isinstance(now, datetime.datetime):
+        now = now.date()
+    now = now.replace(year=Y)
+    return next(season for season, (start, end) in seasons
+                if start <= now <= end)
+
+
 def parse():
-    data = get_data_by_line(gFilename, gLines)
+    data = get_data_by_line(gFilepathUnzipped + "\\" + gFilename, gLines)
     header_output = ""
     cleaned_line = ""
     cleaned_output = ""
     count = 0.0
+    deadline = ""
+    launched_at = ""
     if len(gSelectedCols) == 0:
         for col, val in keys.iteritems():
             if val == 1:
                 header_output = header_output + "\"" + col + "_polarity" + "\"" + ","
                 header_output = header_output + "\"" + col + "_subjectivity" + "\"" + ","
+            elif col == "/data/launched_at":
+                header_output = header_output + "\"" + col + "\"" + "," + "\"" + "duration" + "\"" + ","
             else:
                 header_output = header_output + "\"" + col + "\"" + ","
         header_output = header_output[:-1]
@@ -170,6 +201,15 @@ def parse():
             cleaned_line = ""
             for col, val in keys.iteritems():
                 r = get_cols(datum, '', col, val)
+                if col == "/data/deadline":
+                    deadline = r
+                    r = get_season(datetime.datetime.fromtimestamp(int(r)))
+                elif col == "/data/launched_at":
+                    launched_at = r
+                    r = get_season(datetime.datetime.fromtimestamp(int(r))) \
+                        + "\"" + "," + "\"" + str(int(deadline) - int(launched_at))
+                elif col == "/data/created_at":
+                    r = get_season(datetime.datetime.fromtimestamp(int(r)))
                 if r is None:
                     r = "<Not found>"
                 cleaned_line = cleaned_line + "\"" + r + "\"" + ","
@@ -183,6 +223,8 @@ def parse():
             if keys.get(col) == 1:
                 header_output = header_output + "\"" + col + "_polarity" + "\"" + ","
                 header_output = header_output + "\"" + col + "_subjectivity" + "\"" + ","
+            elif col == "/data/launched_at":
+                header_output = header_output + "\"" + col + "\"" + "," + "\"" + "duration_sec" + "\"" + ","
             else:
                 header_output = header_output + "\"" + col + "\"" + ","
         header_output = header_output[:-1]
@@ -190,6 +232,17 @@ def parse():
             cleaned_line = ""
             for col in gSelectedCols:
                 r = get_cols(datum, '', col, keys.get(col))
+                if col == "/data/deadline":
+                    deadline = r
+                    print(deadline)
+                    r = get_season(datetime.datetime.fromtimestamp(int(r)))
+                elif col == "/data/launched_at":
+                    launched_at = r
+                    print("\t" + launched_at)
+                    r = get_season(datetime.datetime.fromtimestamp(int(r))) \
+                        + "\"" + "," + "\"" + str(int(deadline) - int(launched_at))
+                elif col == "/data/created_at":
+                    r = get_season(datetime.datetime.fromtimestamp(int(r)))
                 if r is None:
                     r = "<Not found>"
                 cleaned_line = cleaned_line + "\"" + r + "\"" + ","
@@ -198,10 +251,30 @@ def parse():
             count = count + 1.0
             os.system('cls')
             print(str(count / float(gLines) * 100) + "%")
-    with open('cleaned.csv', 'w') as output_file:
+    with open(gFilepathCleaned + "\\" + gFilename[:-5] + ".csv", 'w') as output_file:
         output_file.write(header_output + "\n")
         output_file.write(cleaned_output)
 
 
+def parse_each():
+    global gFilename
+    f = []
+    for (dirpath, dirnames, filenames) in os.walk(gFilepathZipped):
+        f.extend(filenames)
+        break
+    for file in f:
+        print("Extracting " + gFilepathZipped + "\\" + file)
+        with gzip.open(gFilepathZipped + "\\" + file, 'rb') as gz_file:
+            with open(gFilepathUnzipped + "\\" + file[:-3], 'wb') as json_file:
+                shutil.copyfileobj(gz_file, json_file)
+        gFilename = file[:-3]
+        print("gFilename is now " + gFilename)
+        parse()
+        try:
+            os.remove(gFilepathUnzipped + "\\" + gFilename)
+        except OSError as e:
+            print ("Error: %s - %s." % (e.filename, e.strerror))
+
+
 if __name__ == "__main__":
-    parse()
+    parse_each()
