@@ -24,10 +24,10 @@
 				<div id="viewport" class="l-viewport">
 					<div class="l-wrapper">
 						<header class="header">
-							<a class="header--logo" href="#0">
-								<p>Northwestern University
-									<br>
-									Ramish Zaidi, Michael Huyler, Mathias Newman
+							<a class="header--logo" href="index.html">
+								<p>EECS 349: Machine Learning
+								    <br>
+									Final Project
 								</p>
 							</a>
 							<div class="header--nav-toggle">
@@ -60,7 +60,7 @@
 										<img src="assets/img/arrow.png" alt="Welcome" width="600px" height="350px">
 									</div>
 									<div class="intro--options">
-										<a href="#0">
+										<a>
 											<h3>Mission</h3>
 											<p>Task: Predict the success of a Kickstarter project
 												<br>
@@ -68,7 +68,7 @@
 												Research Question: Can we predict the success of any given Kickstarter project just from the initial conditions?
 											</p>
 										</a>
-										<a href="#0">
+										<a>
 											<h3>Why is this interesting?</h3>
 											<p>Kickstarter is dominated by user-generated content, and funding is driven directly by the end-users of the products. In addition, Kickstarter relies on its users for its own company's health, both on the buy and sell side. Investigating the interaction between the content of a project and the users on the platform has valeu for both Kickstarter and the users.</p>
 										</a>
@@ -77,7 +77,7 @@
 							</li>
 							<li class="l-section section">
 								<div class="work">
-									<h2>Our Findings</h2>
+									<h2>Key Findings</h2>
 									<div class="work--lockup">
 										<ul class="slider">
 											<li class="slider--item slider--item-left">
@@ -103,8 +103,17 @@
 													<div class="slider--item-image">
 														<img src="https://via.placeholder.com/357x358" alt="Graph 2">
 													</div>
-													<p class="slider--item-title">Supporting Detail #2</p>
-													<p class="slider--item-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do.</p>
+													<p class="slider--item-title">Features</p>
+													<p class="slider--item-description">The most important features to determine the success of a project are, in order of importance:
+                                                    <br>
+                                                    <b>1. The category and subcategory of the project</b>
+                                                    <br>
+                                                    <b>2. The funding goal</b>
+                                                    <br>
+                                                    <b>3. Blurb sentiment (the project description)</b>
+                                                    <br>
+                                                    Honorable mention goes to #4 - the duration and deadline for the fundraising
+                                                    </p>
 												</a>
 											</li>
 										</ul>
@@ -135,16 +144,16 @@
 									</div>
 									<div class="approach">
 										<a>
-											<h3>Plans for remainder of the quarter (+questions/concerns)</h3>
+											<h3>Methods</h3>
 											<p>
-												Currently we are in the data pre-processing stage. Our team split up into two, with one unit working on cleaning up a Kaggle dataset and the other unit working on preparing a larger dataset into a workable format. The larger dataset contains more data and more useful attributes, but it’s structured in a confusing nest of json files. We used Pandas in Python to convert the json into a dataframe, which would allow us to apply the ML techniques efficiently. However, we will have to write our own code to uncover nested information in the dataset because the dataframe seems to be only picking up the top layer of data. We will continue to munge this dataset, but the other unit on our team is using the cleaner, simpler Kaggle dataset as a smaller test case and backup.
+												<b><i>Dataset</i></b>
+                                                <br>
+                                                We are currently utilizing a dataset from Web Robots, which required significant pre-processing. Fortunately, we had more data than expected (approx. 3 years of content), so we sampled four random months of content for each year, culminating in a 544721-example dataset.
 												<br>
 												<br>
-												As expected, the majority of the time spent has been, and will be, in representing data well so that we can run algorithms on it. We expect to spend a week and half more on data pre-processing. Afterwards, we plan to use the remaining time to test our predictor with as many techniques as possible. Our final deliverable will be an analysis, using cross-validation on our data, that shows the results of our predictor using the best ML technique we tested.
-												<br>
-												Given the significant number of categorical attributes, we will need to implement one-hot encoding to represent those attributes numerically (for compatibility with most sklearn packages). A pitfall of this approach is that it will greatly increase the number of attributes the model processes (since there will now be a new dimension for each value that all of the categorical attributes take). To address this ‘curse of dimensionality’ issue, we will analyze the frequency distributions for each categorical attribute, and one-hot encode the most common ones, while bunching the less common values into a combined category, ‘Other.’ The 80/20 rule will likely dictate our method of choosing ‘common’ categorical attribute values. 
-												<br>
-												An interesting obstacle, though perhaps not a challenging one to work around, is that some attributes only accrue values over time after a project is launched. The predictor we are building takes in a brand new project (at time t0=0 seconds) as its input, therefore it will be missing values for funding raised, total number of backers, etc. Our model will be trained on these later-occurring attributes, but it can only predict based on the attributes that would exist at t0.
+                                                <b><i>Learning Techniques</i></b>
+                                                <br>
+                                                Due to the large number of category/subcategory attribute values, decision tree models appeared to be a clear first choice to explore. Branching off of the various project category options seemed like an intuitive approach. We trained/tested the models using Weka, and used a 70-30 train-to-test data split. After determining our baseline accuracy with ZeroR, we began with the J48 Decision Tree. After that, we implemented RandomForest, which maintains the decision tree hypothesis but has a more robust mechanism. For the sake of additional testing, we experimented with Naive Bayes, even though we were skeptical about the conditional independence requirement. Finally, we trained a Multilayer Perceptron with 3 hidden layers (4 hidden units each) because a deep learning approach seemed promising with the significant number of categories present.
 											</p>
 										</a>
 									</div>
@@ -152,21 +161,44 @@
 							</li>
 							<li class="l-section section">
 								<div class="intro">
-									<div class="about--banner">
+									<div class="future--banner">
 										<h2>What's next?</h2>
 									</div>
-									<div class="intro--options">
-										<a href="#0">
-											<h3>Area #1</h3>
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do.</p>
+									<div class="future">
+										<a>
+											<h3>1) Optimization</h3>
+											<p>
+                                                Future work would not only include hyperparameter tuning, but more sophisticated analysis of the text. Specifically, more detailed NLP techniques using blurbs and titles would add further accuracy beyond the sentiment analysis we used.
+                                                <br>
+                                                A great addition to our program would be a data scraping algorithm that can cleanly collect the necessary data for making predictions, so that the program can get better over time. 
+                                                
+                                            </p>
 										</a>
-										<a href="#0">
-											<h3>Area #2</h3>
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do.</p>
+										<a>
+											<h3>2) Advanced objectives:</h3>
+											<p>
+                                                1. predicting how likely a project is to go viral (become extremely popular as opposed to just meeting the funding goal)
+                                                <br>
+                                                2. predicting a ballpark estimate of the amount of funding a project will receive
+                                                <br>
+                                                3. analyzing how different features contribute to the predictability of the model (i.e. can we tell what’s the best season to launch the project in?)
+                                                <br>
+                                                4. determining whether there are correlations between popular categories and the country the project was launched in
+                                                <br>
+                                                <br>
+                                                With regards to #1, it will be interesting to relate viral Kickstarter projects to studies on the virality of memes, fake news, and other fast-spreading content. Unlike other internet content, which is generally free, Kickstarter projects carry with them an economic vote - people choose to back them with their money. Willingness-to-pay measures could provide new insight into the dynamics of viral content.    
+                                            </p>
 										</a>
-										<a href="#0">
-											<h3>Area #2</h3>
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do.</p>
+										<a>
+											<h3>3) Challenges</h3>
+											<p>Some potentially desirable attributes only accrue values after a project is launched. Our model takes in a new project (at time <i>t</i> = 0 seconds) as its input. Therefore, it can only predict based on the attributes that would exist at <i>t<sub>0</sub></i>.
+                                            One could also decide against using just initial conditions and add time-related features (such as funding received to-date, rate of backer increase, etc.), which will add more accuracy as more information is gained about the project’s performance over time.
+                                            <br>
+                                            <br>
+                                            <b><i>Risks and Ethical Considerations</i></b>
+                                            <br>
+                                            People would likely use a tool like this to validate the quality of their Kickstarter project and leverage that to attract backers. If developed to a significant degree of accuracy, gamification is a concern, but not a major one.
+                                            </p>
 										</a>
 									</div>
 								</div>
@@ -177,29 +209,26 @@
 										<h2>Contact Us</h2>
 									</div>
 									<div class="c--options">
-										<a>
+										<a href="mailto:ramishzaidi2019@u.northwestern.edu">
 											<h1>Ramish Zaidi</h1>
-											<h4 href="mailto:ramishzaidi2019@u.northwestern.edu">ramishzaidi2019@u.northwestern.edu</h4>
-                                            <h4 href="https://www.linkedin.com/in/ramishazaidi/">LinkedIn</h4>
+                                            ramishzaidi2019@u.northwestern.edu
 										</a>
-										<a>
+										<a href="mailto:MichaelHuyler2020@u.northwestern.edu">
 											<h1>Michael Huyler</h1>
-											<h4 href="mailto:MichaelHuyler2020@u.northwestern.edu">michaelhuyler2020@u.northwestern.edu</h4>
-                                            <h4 href="https://www.linkedin.com/in/michael-huyler/">LinkedIn</h4>
+											michaelhuyler2020@u.northwestern.edu
 										</a>
-										<a>
+										<a href="mailto:mathiasnewman2019@u.northwestern.edu">
 											<h1>Mathias Newman</h1>
-											<h4 href="mailto:mathiasnewman2019@u.northwestern.edu">mathiasnewman2019@u.northwestern.edu</h4>
-                                            <h4 href="https://www.linkedin.com/in/mathiasdnewman/">LinkedIn</h4>
+											mathiasnewman2019@u.northwestern.edu
 								        </a>
 									</div>
 									<div class="contributors">
 										<h2>Special Thanks</h2>
-										<a href="https://www.cs.northwestern.edu/~ddowney/">Doug Downey</a>, for being our beloved EECS 349 professor
+										<a href="https://www.cs.northwestern.edu/~ddowney/">Doug Downey</a>, for teaching this class at Northwestern University
 										<br>
 										<a href="https://github.com/BuckyMaler">Bucky Maler</a>, for the "Global" HTML template
 										<br>
-										Zachary Paitsel, our fallen comrade
+										Zachary Paitsel, a former team member
 									</div>
 								</div>
 							</li>
