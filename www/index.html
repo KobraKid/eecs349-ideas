@@ -24,7 +24,7 @@
 				<div id="viewport" class="l-viewport">
 					<div class="l-wrapper">
 						<header class="header">
-							<a class="header--logo" href="index.html">
+							<a class="header--logo" href="https://www.mccormick.northwestern.edu/eecs/courses/descriptions/349.html" target="_blank">
 								<p>EECS 349: Machine Learning
 								    <br>
 									Final Project
@@ -66,11 +66,14 @@
 												<br>
 												<br>
 												Research Question: Can we predict the success of any given Kickstarter project just from the initial conditions?
+                                                <br>
+                                                <br>
+                                                <b>Outcome: 96% prediction accuracy.</b> See full report in section 5 for detailed results.
 											</p>
 										</a>
 										<a>
 											<h3>Why is this interesting?</h3>
-											<p>Kickstarter is dominated by user-generated content, and funding is driven directly by the end-users of the products. In addition, Kickstarter relies on its users for its own company's health, both on the buy and sell side. Investigating the interaction between the content of a project and the users on the platform has valeu for both Kickstarter and the users.</p>
+											<p>Kickstarter is dominated by user-generated content, and funding is driven directly by the end-users of the products. In addition, Kickstarter relies on its users for its own company's health, both on the buy and sell side. Investigating the interaction between the content of a project and the users on the platform has value for both Kickstarter and the users.</p>
 										</a>
 									</div>
 								</div>
@@ -83,28 +86,11 @@
 											<li class="slider--item slider--item-left">
 												<a href="#0">
 													<div class="slider--item-image">
-														<img src="https://via.placeholder.com/357x358" alt="Victory">
-													</div>
-													<p class="slider--item-title">Supporting Detail #1</p>
-													<p class="slider--item-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do.</p>
-												</a>
-											</li>
-											<li class="slider--item slider--item-center">
-												<a href="#0">
-													<div class="slider--item-image">
-														<img src="https://via.placeholder.com/300x300" alt="Graph 1">
-													</div>
-													<p class="slider--item-title">Main Insight</p>
-													<p class="slider--item-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do.</p>
-												</a>
-											</li>
-											<li class="slider--item slider--item-right">
-												<a href="#0">
-													<div class="slider--item-image">
-														<img src="https://via.placeholder.com/357x358" alt="Graph 2">
+														<img src="assets/img/att_info.png" alt="Graph 1">
 													</div>
 													<p class="slider--item-title">Features</p>
-													<p class="slider--item-description">The most important features to determine the success of a project are, in order of importance:
+													<p class="slider--item-description">
+                                                    The most important features to determine the success of a project are, in order of importance:
                                                     <br>
                                                     <b>1. The category and subcategory of the project</b>
                                                     <br>
@@ -113,6 +99,28 @@
                                                     <b>3. Blurb sentiment (the project description)</b>
                                                     <br>
                                                     Honorable mention goes to #4 - the duration and deadline for the fundraising
+                                                    </p>
+												</a>
+											</li>
+											<li class="slider--item slider--item-center">
+												<a href="#0">
+													<div class="slider--item-image">
+														<img src="assets/img/acc_bar.png" alt="Graph 2">
+													</div>
+													<p class="slider--item-title">Main Insight</p>
+													<p class="slider--item-description">
+                                                    We achieved an incredible <b><i>95.9%</i></b> accuracy with our Random Forest model, using more than half a million data points. Our results indicate that the features we selected have great deterministic power for the success of any given project. In other words, the <b>initial conditions of a Kickstarter project have compelling predictive ability</b> as to whether the project will meet its target.
+                                                    </p>
+												</a>
+											</li>
+											<li class="slider--item slider--item-right">
+												<a href="#0">
+													<div class="slider--item-image">
+														<img src="assets/img/funding.jpg" alt="Graph 3">
+													</div>
+													<p class="slider--item-title">Implications</p>
+													<p class="slider--item-description">
+                                                    First of all, it’s clear that the content and context of the initial project alone has great importance. Using such information, Kickstarter users can optimize projects to give them the maximum statistical likelihood of success. On the other hand, Kickstarter could explore how they can increase users’ chances of success on their platform (so far, only about half of projects get funded). This spells out an opportunity to gain a competitive edge over other platforms.
                                                     </p>
 												</a>
 											</li>
@@ -223,10 +231,14 @@
 								        </a>
 									</div>
 									<div class="contributors">
-										<h2>Special Thanks</h2>
+										<h2>Sources</h2>
+                                        <a href="https://github.com/KobraKid/eecs349-ideas">GitHub Repo</a> | <a href="http://kickstarterprojectevaluator.coolpage.biz/raw_data/Kickstarter_2018-10-18T03_20_48_880Z.csv">Raw Data</a> (sample, 6.02MB) | <a href="http://kickstarterprojectevaluator.coolpage.biz/writeup/writeup.pdf">Full Report</a>
+                                        <h2>Special Thanks</h2>
 										<a href="https://www.cs.northwestern.edu/~ddowney/">Doug Downey</a>, for teaching this class at Northwestern University
 										<br>
 										<a href="https://github.com/BuckyMaler">Bucky Maler</a>, for the "Global" HTML template
+                                        <br>
+                                        <a href="https://webrobots.io/kickstarter-datasets/"> Web Robots</a>, for providing data
 										<br>
 										Zachary Paitsel, a former team member
 									</div>
