@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Kickstarter Project Evaluator</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="description" content="HTML5 website template">
+		<meta name="keywords" content="global, template, html, sass, jquery">
+		<meta name="author" content="Ramish Zaidi">
+		<link rel="stylesheet" href="assets/css/main.css">
+	</head>
+	<body>
+		<!-- notification for small viewports and landscape oriented smartphones -->
+		<div class="device-notification">
+			<a class="device-notification--logo" href="#0">
+				<p>EECS 349</p>
+			</a>
+			<p class="device-notification--message">We must request you orient your device to portrait or find a larger screen. You won't be disappointed.</p>
+		</div>
+		<div class="perspective effect-rotate-left">
+			<div class="container">
+				<div class="outer-nav--return"></div>
+				<div id="viewport" class="l-viewport">
+					<div class="l-wrapper">
+						<header class="header">
+							<a class="header--logo" href="https://www.mccormick.northwestern.edu/eecs/courses/descriptions/349.html" target="_blank">
+								<p>EECS 349: Machine Learning
+								    <br>
+									Final Project
+								</p>
+							</a>
+							<div class="header--nav-toggle">
+								<span></span>
+							</div>
+						</header>
+						<nav class="l-side-nav">
+							<ul class="side-nav">
+								<li class="is-active"><span>Home</span></li>
+								<li><span>Results</span></li>
+								<li><span>Approach</span></li>
+								<li><span>Future Research</span></li>
+								<li><span>Contributors</span></li>
+							</ul>
+						</nav>
+						<ul class="l-main-content main-content">
+							<li class="l-section section section--is-active">
+								<div class="intro">
+									<div class="intro--banner">
+										<h1>Kickstarter<br>Project<br>Evaluator</h1>
+										<button class="cta">
+											Predict success
+											<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 118" style="enable-background:new 0 0 150 118;" xml:space="preserve">
+												<g transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)">
+													<path d="M870,1167c-34-17-55-57-46-90c3-15,81-100,194-211l187-185l-565-1c-431,0-571-3-590-13c-55-28-64-94-18-137c21-20,33-20,597-20h575l-192-193C800,103,794,94,849,39c20-20,39-29,61-29c28,0,63,30,298,262c147,144,272,271,279,282c30,51,23,60-219,304C947,1180,926,1196,870,1167z"/>
+												</g>
+											</svg>
+											<span class="btn-background"></span>
+										</button>
+										<img src="assets/img/arrow.png" alt="Welcome" width="600px" height="350px">
+									</div>
+									<div class="intro--options">
+										<a>
+											<h3>Mission</h3>
+											<p>Task: Predict the success of a Kickstarter project
+												<br>
+												<br>
+												Research Question: Can we predict the success of any given Kickstarter project just from the initial conditions?
+                                                <br>
+                                                <br>
+                                                <b>Outcome: 96% prediction accuracy.</b> See full report in section 5 for detailed results.
+											</p>
+										</a>
+										<a>
+											<h3>Why is this interesting?</h3>
+											<p>Kickstarter is dominated by user-generated content, and funding is driven directly by the end-users of the products. In addition, Kickstarter relies on its users for its own company's health, both on the buy and sell side. Investigating the interaction between the content of a project and the users on the platform has value for both Kickstarter and the users.</p>
+										</a>
+									</div>
+								</div>
+							</li>
+							<li class="l-section section">
+								<div class="work">
+									<h2>Key Findings</h2>
+									<div class="work--lockup">
+										<ul class="slider">
+											<li class="slider--item slider--item-left">
+												<a href="#0">
+													<div class="slider--item-image">
+														<img src="assets/img/att_info.png" alt="Graph 1">
+													</div>
+													<p class="slider--item-title">Features</p>
+													<p class="slider--item-description">
+                                                    The most important features to determine the success of a project are, in order of importance:
+                                                    <br>
+                                                    <b>1. The category and subcategory of the project</b>
+                                                    <br>
+                                                    <b>2. The funding goal</b>
+                                                    <br>
+                                                    <b>3. Blurb sentiment (the project description)</b>
+                                                    <br>
+                                                    Honorable mention goes to #4 - the duration and deadline for the fundraising
+                                                    </p>
+												</a>
+											</li>
+											<li class="slider--item slider--item-center">
+												<a href="#0">
+													<div class="slider--item-image">
+														<img src="assets/img/acc_bar.png" alt="Graph 2">
+													</div>
+													<p class="slider--item-title">Main Insight</p>
+													<p class="slider--item-description">
+                                                    We achieved an incredible <b><i>95.9%</i></b> accuracy with our Random Forest model, using more than half a million data points. Our results indicate that the features we selected have great deterministic power for the success of any given project. In other words, the <b>initial conditions of a Kickstarter project have compelling predictive ability</b> as to whether the project will meet its target.
+                                                    </p>
+												</a>
+											</li>
+											<li class="slider--item slider--item-right">
+												<a href="#0">
+													<div class="slider--item-image">
+														<img src="assets/img/funding.jpg" alt="Graph 3">
+													</div>
+													<p class="slider--item-title">Implications</p>
+													<p class="slider--item-description">
+                                                    First of all, it’s clear that the content and context of the initial project alone has great importance. Using such information, Kickstarter users can optimize projects to give them the maximum statistical likelihood of success. On the other hand, Kickstarter could explore how they can increase users’ chances of success on their platform (so far, only about half of projects get funded). This spells out an opportunity to gain a competitive edge over other platforms.
+                                                    </p>
+												</a>
+											</li>
+										</ul>
+										<div class="slider--prev">
+											<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+												viewBox="0 0 150 118" style="enable-background:new 0 0 150 118;" xml:space="preserve">
+												<g transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)">
+													<path d="M561,1169C525,1155,10,640,3,612c-3-13,1-36,8-52c8-15,134-145,281-289C527,41,562,10,590,10c22,0,41,9,61,29
+														c55,55,49,64-163,278L296,510h575c564,0,576,0,597,20c46,43,37,109-18,137c-19,10-159,13-590,13l-565,1l182,180
+														c101,99,187,188,193,199c16,30,12,57-12,84C631,1174,595,1183,561,1169z"/>
+												</g>
+											</svg>
+										</div>
+										<div class="slider--next">
+											<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 118" style="enable-background:new 0 0 150 118;" xml:space="preserve">
+												<g transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)">
+													<path d="M870,1167c-34-17-55-57-46-90c3-15,81-100,194-211l187-185l-565-1c-431,0-571-3-590-13c-55-28-64-94-18-137c21-20,33-20,597-20h575l-192-193C800,103,794,94,849,39c20-20,39-29,61-29c28,0,63,30,298,262c147,144,272,271,279,282c30,51,23,60-219,304C947,1180,926,1196,870,1167z"/>
+												</g>
+											</svg>
+										</div>
+									</div>
+								</div>
+							</li>
+							<li class="l-section section">
+								<div class="about">
+									<div class="about--banner">
+										<h2>How did we achieve those results?</h2>
+									</div>
+									<div class="approach">
+										<a>
+											<h3>Methods</h3>
+											<p>
+												<b><i>Dataset</i></b>
+                                                <br>
+                                                We are currently utilizing a dataset from Web Robots, which required significant pre-processing. Fortunately, we had more data than expected (approx. 3 years of content), so we sampled four random months of content for each year, culminating in a 544721-example dataset.
+												<br>
+												<br>
+                                                <b><i>Learning Techniques</i></b>
+                                                <br>
+                                                Due to the large number of category/subcategory attribute values, decision tree models appeared to be a clear first choice to explore. Branching off of the various project category options seemed like an intuitive approach. We trained/tested the models using Weka, and used a 70-30 train-to-test data split. After determining our baseline accuracy with ZeroR, we began with the J48 Decision Tree. After that, we implemented RandomForest, which maintains the decision tree hypothesis but has a more robust mechanism. For the sake of additional testing, we experimented with Naive Bayes, even though we were skeptical about the conditional independence requirement. Finally, we trained a Multilayer Perceptron with 3 hidden layers (4 hidden units each) because a deep learning approach seemed promising with the significant number of categories present.
+											</p>
+										</a>
+									</div>
+								</div>
+							</li>
+							<li class="l-section section">
+								<div class="intro">
+									<div class="future--banner">
+										<h2>What's next?</h2>
+									</div>
+									<div class="future">
+										<a>
+											<h3>1) Optimization</h3>
+											<p>
+                                                Future work would not only include hyperparameter tuning, but more sophisticated analysis of the text. Specifically, more detailed NLP techniques using blurbs and titles would add further accuracy beyond the sentiment analysis we used.
+                                                <br>
+                                                A great addition to our program would be a data scraping algorithm that can cleanly collect the necessary data for making predictions, so that the program can get better over time. 
+                                                
+                                            </p>
+										</a>
+										<a>
+											<h3>2) Advanced objectives:</h3>
+											<p>
+                                                1. predicting how likely a project is to go viral (become extremely popular as opposed to just meeting the funding goal)
+                                                <br>
+                                                2. predicting a ballpark estimate of the amount of funding a project will receive
+                                                <br>
+                                                3. analyzing how different features contribute to the predictability of the model (i.e. can we tell what’s the best season to launch the project in?)
+                                                <br>
+                                                4. determining whether there are correlations between popular categories and the country the project was launched in
+                                                <br>
+                                                <br>
+                                                With regards to #1, it will be interesting to relate viral Kickstarter projects to studies on the virality of memes, fake news, and other fast-spreading content. Unlike other internet content, which is generally free, Kickstarter projects carry with them an economic vote - people choose to back them with their money. Willingness-to-pay measures could provide new insight into the dynamics of viral content.    
+                                            </p>
+										</a>
+										<a>
+											<h3>3) Challenges</h3>
+											<p>Some potentially desirable attributes only accrue values after a project is launched. Our model takes in a new project (at time <i>t</i> = 0 seconds) as its input. Therefore, it can only predict based on the attributes that would exist at <i>t<sub>0</sub></i>.
+                                            One could also decide against using just initial conditions and add time-related features (such as funding received to-date, rate of backer increase, etc.), which will add more accuracy as more information is gained about the project’s performance over time.
+                                            <br>
+                                            <br>
+                                            <b><i>Risks and Ethical Considerations</i></b>
+                                            <br>
+                                            People would likely use a tool like this to validate the quality of their Kickstarter project and leverage that to attract backers. If developed to a significant degree of accuracy, gamification is a concern, but not a major one.
+                                            </p>
+										</a>
+									</div>
+								</div>
+							</li>
+							<li class="l-section section">
+								<div class="about">
+									<div class="contributors--banner">
+										<h2>Contact Us</h2>
+									</div>
+									<div class="c--options">
+										<a href="mailto:ramishzaidi2019@u.northwestern.edu">
+											<h1>Ramish Zaidi</h1>
+                                            ramishzaidi2019@u.northwestern.edu
+										</a>
+										<a href="mailto:MichaelHuyler2020@u.northwestern.edu">
+											<h1>Michael Huyler</h1>
+											michaelhuyler2020@u.northwestern.edu
+										</a>
+										<a href="mailto:mathiasnewman2019@u.northwestern.edu">
+											<h1>Mathias Newman</h1>
+											mathiasnewman2019@u.northwestern.edu
+								        </a>
+									</div>
+									<div class="contributors">
+										<h2>Sources</h2>
+                                        <a href="https://github.com/KobraKid/eecs349-ideas">GitHub Repo</a> | <a href="http://kickstarterprojectevaluator.coolpage.biz/raw_data/Kickstarter_2018-10-18T03_20_48_880Z.csv">Raw Data</a> (sample, 6.02MB) | <a href="http://kickstarterprojectevaluator.coolpage.biz/writeup/writeup.pdf">Full Report</a>
+                                        <h2>Special Thanks</h2>
+										<a href="https://www.cs.northwestern.edu/~ddowney/">Doug Downey</a>, for teaching this class at Northwestern University
+										<br>
+										<a href="https://github.com/BuckyMaler">Bucky Maler</a>, for the "Global" HTML template
+                                        <br>
+                                        <a href="https://webrobots.io/kickstarter-datasets/"> Web Robots</a>, for providing data
+										<br>
+										Zachary Paitsel, a former team member
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<ul class="outer-nav">
+				<li class="is-active">Home</li>
+				<li>Results</li>
+				<li>Approach</li>
+				<li>Future Research</li>
+				<li>Contributors</li>
+			</ul>
+		</div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+		<script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-2.2.4.min.js"><\/script>')</script>
+		<script src="assets/js/functions-min.js"></script>
+	</body>
+</html>
